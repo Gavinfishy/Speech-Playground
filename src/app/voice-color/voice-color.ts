@@ -35,16 +35,16 @@ export class VoiceColor implements AfterViewInit{
   displayHints(): void {}
 
   // Will stop recording after one word regardless of if it was recognized
-  startRecognition(): void {
-    this.speechService.listenOnce().subscribe({
-      next: ({ transcript }) => {
-        this.decodeSpeech(transcript.toLowerCase());
-      },
-      error: (err: string) => {
-        this.diagnostic.nativeElement.textContent = 'Speech error: ' + err;
-      }
-    });
-  }
+  // startRecognition(): void {
+  //   this.speechService.listenOnce().subscribe({
+  //     next: ({ transcript }) => {
+  //       this.decodeSpeech(transcript.toLowerCase());
+  //     },
+  //     error: (err: string) => {
+  //       this.diagnostic.nativeElement.textContent = 'Speech error: ' + err;
+  //     }
+  //   });
+  // }
 
   // Will continue listening until stopped
   toggleContinuousRecognition(): void {

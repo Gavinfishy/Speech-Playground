@@ -103,69 +103,69 @@ export class SpeechRecognitionService {
     return '#JSGF V1.0; grammar colors; public <color> = ' + COLORS.join(' | ') + ' ;';
   }
 
-  listenOnce(): Observable<{ transcript: string; confidence: number }> {
-    return new Observable(observer => {
-      this.recognition.onresult = (event: SpeechRecognitionEvent) => {
-        this.zone.run(() => {
-          const transcript = event.results[0][0].transcript.toLowerCase();
-          const confidence = event.results[0][0].confidence;
-          observer.next({ transcript, confidence });
-        });
-      };
+  // listenOnce(): Observable<{ transcript: string; confidence: number }> {
+  //   return new Observable(observer => {
+  //     this.recognition.onresult = (event: SpeechRecognitionEvent) => {
+  //       this.zone.run(() => {
+  //         const transcript = event.results[0][0].transcript.toLowerCase();
+  //         const confidence = event.results[0][0].confidence;
+  //         observer.next({ transcript, confidence });
+  //       });
+  //     };
 
-      this.recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
-        this.zone.run(() => {
-          observer.error(event.error);
-        });
-      };
+  //     this.recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
+  //       this.zone.run(() => {
+  //         observer.error(event.error);
+  //       });
+  //     };
 
-      this.recognition.onnomatch = () => {
-        this.zone.run(() => {
-          observer.error("No match");
-        });
-      };
+  //     this.recognition.onnomatch = () => {
+  //       this.zone.run(() => {
+  //         observer.error("No match");
+  //       });
+  //     };
 
-      this.recognition.onspeechend = () => {
-        this.recognition.stop();
-      };
+  //     this.recognition.onspeechend = () => {
+  //       this.recognition.stop();
+  //     };
 
-      this.recognition.start();
-    });
-  }
+  //     this.recognition.start();
+  //   });
+  // }
 
   listenContinuously(
-  onResult: (transcript: string, confidence: number) => void,
-  onError?: (error: string) => void
-): () => void {
-  this.recognition.continuous = true;
+    onResult: (transcript: string, confidence: number) => void,
+    onError?: (error: string) => void
+  ): () => void {
+    this.recognition.continuous = true;
 
-  this.recognition.onresult = (event: SpeechRecognitionEvent) => {
-    this.zone.run(() => {
-      const lastResultIndex = event.resultIndex;
-      const transcript = event.results[lastResultIndex][0].transcript.toLowerCase();
-      const confidence = event.results[lastResultIndex][0].confidence;
-      onResult(transcript, confidence);
-    });
-  };
+    this.recognition.onresult = (event: SpeechRecognitionEvent) => {
+      this.zone.run(() => {
+        const lastResultIndex = event.resultIndex;
+        const transcript = event.results[lastResultIndex][0].transcript.toLowerCase();
+        const confidence = event.results[lastResultIndex][0].confidence;
+        onResult(transcript, confidence);
+      });
+    };
 
-  this.recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
-    this.zone.run(() => {
-      if (onError) onError(event.error);
-    });
-  };
+    this.recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
+      this.zone.run(() => {
+        if (onError) onError(event.error);
+      });
+    };
 
-  this.recognition.onnomatch = () => {
-    this.zone.run(() => {
-      if (onError) onError('No match');
-    });
-  };
+    this.recognition.onnomatch = () => {
+      this.zone.run(() => {
+        if (onError) onError('No match');
+      });
+    };
 
-  this.recognition.start();
+    this.recognition.start();
 
-  // Return a cleanup function that stops the recognition
-  return () => {
-    this.recognition.stop();
-  };
-}
+    // Return a cleanup function that stops the recognition
+    return () => {
+      this.recognition.stop();
+    };
+  }
 
 }
