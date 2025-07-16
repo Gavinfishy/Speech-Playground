@@ -1,0 +1,42 @@
+
+<div class="other-buttons-container">
+    <button class="start-button" (click)="goToPage2()">Go to Page 2</button>
+
+    <!-- Button to open health menu-->
+    <button class="start-button" (click)="toggleHelpPopup()">
+        Help?
+    </button>
+</div>
+
+<div class="voice-color-container">
+
+    <!-- Diagnostic output for recognized speech -->
+    <div #diagnostic class="diagnostic">Waiting for voice input...</div>
+
+    <!-- Button to start listening once -->
+    <button class="start-button" (click)="startRecognition()">
+        Start Listening (Once)
+    </button>
+
+    <!-- Button to start listening forever -->
+    <button class="start-button" (click)="toggleContinuousRecognition()">
+        {{ isListening ? 'Stop Listening' : 'Start Listening (Continuous)'}}
+    </button>
+
+    <!-- Hints area with color boxes -->
+    <div class="hints">
+        @for (color of colors; track color) {
+            <span 
+            [style.background-color]="color"
+            style="padding: 2px 6px; margin: 2px; display: inline-block;"
+            >
+                {{ color }}
+            </span>
+        }
+    </div>
+
+</div>
+
+@if (showingHelp) {
+    <app-help-popup (close)="toggleHelpPopup()"></app-help-popup>
+}

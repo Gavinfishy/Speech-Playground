@@ -1,0 +1,47 @@
+.voice-color-container {
+  text-align: center;
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+}
+
+.other-buttons-container {
+  text-align: center;
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+}
+
+.diagnostic {
+  margin: 1rem 0;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.start-button {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  border: none;
+  background-color: #6200ea;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+.hints {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.hints span {
+  padding: 6px 10px;
+  border-radius: 4px;
+  color: #000;
+  border: 1px solid #ccc;
+  font-size: 0.9rem;
+  cursor: default;
+  user-select: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
