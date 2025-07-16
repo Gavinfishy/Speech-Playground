@@ -13,11 +13,6 @@
     <!-- Diagnostic output for recognized speech -->
     <div #diagnostic class="diagnostic">Waiting for voice input...</div>
 
-    <!-- Button to start listening once -->
-    <!-- <button class="start-button" (click)="startRecognition()">
-        Start Listening (Once)
-    </button> -->
-
     <!-- Button to start listening forever -->
     <button class="start-button" (click)="toggleContinuousRecognition()">
         {{ isListening ? 'Stop Listening' : 'Start Listening'}}
@@ -26,10 +21,7 @@
     <!-- Hints area with color boxes -->
     <div class="hints">
         @for (color of colors; track color) {
-            <span 
-            [style.background-color]="color"
-            style="padding: 2px 6px; margin: 2px; display: inline-block;"
-            >
+            <span [style.background-color]="color" style="padding: 2px 6px; margin: 2px; display: inline-block;">
                 {{ color }}
             </span>
         }

@@ -1,6 +1,5 @@
 import { Injectable, NgZone } from '@angular/core';
-import { Observable } from 'rxjs'; 
-import { COLORS } from '../colors-list';
+import { KEYWORDS } from '../keyword-list';
 
 interface SpeechGrammar {
   src: string;
@@ -100,38 +99,8 @@ export class SpeechRecognitionService {
   }
 
   private getColorGrammar(): string {
-    return '#JSGF V1.0; grammar colors; public <color> = ' + COLORS.join(' | ') + ' ;';
+    return '#JSGF V1.0; grammar colors; public <color> = ' + KEYWORDS.COLORS.join(' | ') + ' ;';
   }
-
-  // listenOnce(): Observable<{ transcript: string; confidence: number }> {
-  //   return new Observable(observer => {
-  //     this.recognition.onresult = (event: SpeechRecognitionEvent) => {
-  //       this.zone.run(() => {
-  //         const transcript = event.results[0][0].transcript.toLowerCase();
-  //         const confidence = event.results[0][0].confidence;
-  //         observer.next({ transcript, confidence });
-  //       });
-  //     };
-
-  //     this.recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
-  //       this.zone.run(() => {
-  //         observer.error(event.error);
-  //       });
-  //     };
-
-  //     this.recognition.onnomatch = () => {
-  //       this.zone.run(() => {
-  //         observer.error("No match");
-  //       });
-  //     };
-
-  //     this.recognition.onspeechend = () => {
-  //       this.recognition.stop();
-  //     };
-
-  //     this.recognition.start();
-  //   });
-  // }
 
   listenContinuously(
     onResult: (transcript: string, confidence: number) => void,

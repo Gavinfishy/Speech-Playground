@@ -1,7 +1,6 @@
 import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { SpeechRecognitionService } from '../services/speech-recognition.service';
-import { COLORS } from '../colors-list';
-import { COMMANDS } from '../command-list';
+import { KEYWORDS } from '../keyword-list';
 import { HelpPopup } from '../help-popup/help-popup';
 import { Router } from '@angular/router';
 
@@ -14,8 +13,8 @@ import { Router } from '@angular/router';
 export class VoiceColor implements AfterViewInit{
   @ViewChild('diagnostic') diagnostic!: ElementRef<HTMLDivElement>;
 
-  colors: string[] = COLORS;
-  commands: string[] = COMMANDS;
+  colors: string[] = KEYWORDS.COLORS;
+  commands: string[] = KEYWORDS.COMMANDS;
   isListening: boolean = false;
   showingHelp: boolean = false;
 
