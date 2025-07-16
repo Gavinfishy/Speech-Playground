@@ -4,5 +4,5 @@ import { PageTwo } from './page-two/page-two';
 
 export const routes: Routes = [
     { path: '', component: VoiceColor },
-    { path: 'page2', component: PageTwo }
+    { path: 'transcribe', component: PageTwo }
 ];

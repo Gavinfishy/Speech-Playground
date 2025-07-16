@@ -15,6 +15,7 @@ export class VoiceColor implements AfterViewInit{
 
   colors: string[] = KEYWORDS.COLORS;
   commands: string[] = KEYWORDS.COMMANDS;
+  pages: string[] = KEYWORDS.PAGES;
   isListening: boolean = false;
   showingHelp: boolean = false;
 
@@ -25,25 +26,17 @@ export class VoiceColor implements AfterViewInit{
     private router: Router
   ) {}
 
-  goToPage2(): void {
-    this.router.navigate(['/page2'])
+  navigatePages(pageName: string): void {
+    if (pageName === 'transcribe') {
+      this.router.navigate(['/transcribe'])
+    } else if (pageName === 'home') {
+      this.router.navigate(['/'])
+    }
   }
 
   ngAfterViewInit(): void {}
 
   displayHints(): void {}
-
-  // Will stop recording after one word regardless of if it was recognized
-  // startRecognition(): void {
-  //   this.speechService.listenOnce().subscribe({
-  //     next: ({ transcript }) => {
-  //       this.decodeSpeech(transcript.toLowerCase());
-  //     },
-  //     error: (err: string) => {
-  //       this.diagnostic.nativeElement.textContent = 'Speech error: ' + err;
-  //     }
-  //   });
-  // }
 
   // Will continue listening until stopped
   toggleContinuousRecognition(): void {
@@ -56,7 +49,7 @@ export class VoiceColor implements AfterViewInit{
       this.diagnostic.nativeElement.textContent = 'Listening...';
 
       this.continuousRecognitionAbort = this.speechService.listenContinuously((transcript) => {
-        this.decodeSpeech(transcript.toLowerCase());
+        this.decodeSpeech(transcript.toLowerCase().trim());
       }, (err) => {
         this.diagnostic.nativeElement.textContent = 'Speech error: ' + err;
       });
@@ -77,10 +70,9 @@ export class VoiceColor implements AfterViewInit{
 
   // Accepts web captured speech input
   decodeSpeech(transcript: string): void {
-    console.log(transcript)
     const command = this.commands.find(command => transcript.includes(command));
     if (command) {
-      transcript = transcript.replace(command, '');
+      transcript = transcript.replace(command, '').trim();
     }
     
     switch (command) {
@@ -104,8 +96,13 @@ export class VoiceColor implements AfterViewInit{
         break;
 
       case 'navigate':
-        console.log(transcript);
-        this.goToPage2();
+        const foundPage = this.pages.find(page => transcript.includes(page));
+        if (foundPage) {
+          this.navigatePages(foundPage);
+        }
+        else {
+          this.diagnostic.nativeElement.textContent = 'Page not recognized: ' + transcript;
+        }
         break;
       
       case 'reset':

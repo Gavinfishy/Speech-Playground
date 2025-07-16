@@ -12,5 +12,13 @@ export const KEYWORDS = {
 
     COMMANDS: [
         'close', 'color', 'help', 'navigate', 'reset', 'stop'
-    ]
+    ],
+
+    PAGES: [
+        'home', 'transcribe'
+    ],
+
+    TEXTBOXES: [
+        'address', 'name', 'record'
+    ],
 }
