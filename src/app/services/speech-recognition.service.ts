@@ -107,7 +107,7 @@ export class SpeechRecognitionService {
     return new Observable(observer => {
       this.recognition.onresult = (event: SpeechRecognitionEvent) => {
         this.zone.run(() => {
-          const transcript = event.results[0][0].transcript.toLowerCase().replace(/\s+/g, '');
+          const transcript = event.results[0][0].transcript.toLowerCase();
           const confidence = event.results[0][0].confidence;
           observer.next({ transcript, confidence });
         });
@@ -142,7 +142,7 @@ export class SpeechRecognitionService {
   this.recognition.onresult = (event: SpeechRecognitionEvent) => {
     this.zone.run(() => {
       const lastResultIndex = event.resultIndex;
-      const transcript = event.results[lastResultIndex][0].transcript.toLowerCase().replace(/\s+/g, '');
+      const transcript = event.results[lastResultIndex][0].transcript.toLowerCase();
       const confidence = event.results[lastResultIndex][0].confidence;
       onResult(transcript, confidence);
     });
