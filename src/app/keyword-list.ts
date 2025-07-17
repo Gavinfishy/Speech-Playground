@@ -11,7 +11,7 @@ export const KEYWORDS = {
     ],
 
     COMMANDS: [
-        'close', 'color', 'help', 'navigate', 'reset', 'stop'
+        'close', 'color', 'help', 'navigate', 'record', 'reset', 'stop'
     ],
 
     PAGES: [
@@ -19,6 +19,7 @@ export const KEYWORDS = {
     ],
 
     TEXTBOXES: [
-        'address', 'name', 'record'
+        'back', 'birthday', 'finish', 'first', 'last', 'middle', 'next', 
+        'notes', 'state', 'street', 'zip'
     ],
 }

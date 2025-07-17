@@ -16,6 +16,7 @@ export class VoiceColor implements AfterViewInit{
   colors: string[] = KEYWORDS.COLORS;
   commands: string[] = KEYWORDS.COMMANDS;
   pages: string[] = KEYWORDS.PAGES;
+  textBoxes: string[] = KEYWORDS.TEXTBOXES;
   isListening: boolean = false;
   showingHelp: boolean = false;
 
@@ -99,9 +100,18 @@ export class VoiceColor implements AfterViewInit{
         const foundPage = this.pages.find(page => transcript.includes(page));
         if (foundPage) {
           this.navigatePages(foundPage);
-        }
-        else {
+        } else {
           this.diagnostic.nativeElement.textContent = 'Page not recognized: ' + transcript;
+        }
+        break;
+
+      case 'record':
+        const foundTextBox = this.textBoxes.find(textBox => transcript.includes(textBox));
+        if (foundTextBox) {
+          const textContent = transcript.replace(foundTextBox, '').trim();
+          this.recordTextBox(foundTextBox, textContent);
+        } else {
+
         }
         break;
       
@@ -115,6 +125,54 @@ export class VoiceColor implements AfterViewInit{
 
       default:
         this.diagnostic.nativeElement.textContent = 'Command not recognized: ' + transcript;
+    }
+  }
+
+  recordTextBox(textField: string, textContent: string) {
+    switch (textField) {
+      case 'back':
+        console.log('Not implemented yet');
+        break;
+
+      case 'birthday':
+        console.log(textContent)
+        break;
+
+      case 'finish':
+        console.log('Not implemented yet');
+        break;
+
+      case 'first':
+        console.log(textContent)
+        break;
+
+      case 'last':
+        console.log(textContent)
+        break;
+
+      case 'middle':
+        console.log(textContent)
+        break;
+
+      case 'next':
+        console.log('Not implemented yet');
+        break;
+
+      case 'notes':
+        console.log(textContent)
+        break;
+
+      case 'state':
+        console.log(textContent)
+        break;
+
+      case 'street':
+        console.log(textContent)
+        break;
+
+      case 'zip':
+        console.log(textContent)
+        break;
     }
   }
 
