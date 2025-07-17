@@ -3,6 +3,7 @@ import { SpeechRecognitionService } from '../services/speech-recognition.service
 import { KEYWORDS } from '../keyword-list';
 import { HelpPopup } from '../help-popup/help-popup';
 import { Router } from '@angular/router';
+import { FillForm } from '../services/fill-form';
 
 @Component({
   selector: 'app-voice-color',
@@ -24,7 +25,8 @@ export class VoiceColor implements AfterViewInit{
 
   constructor(
     private speechService: SpeechRecognitionService,
-    private router: Router
+    private router: Router,
+    private fillForm: FillForm,
   ) {}
 
   navigatePages(pageName: string): void {
@@ -129,50 +131,23 @@ export class VoiceColor implements AfterViewInit{
   }
 
   recordTextBox(textField: string, textContent: string) {
-    switch (textField) {
-      case 'back':
-        console.log('Not implemented yet');
-        break;
+    const fieldMap: Record<string, string> = {
+      birthday: 'birthday',
+      first: 'firstName',
+      last: 'lastName',
+      middle: 'middleName',
+      notes: 'notes',
+      state: 'state',
+      street: 'street',
+      zip: 'zip'
+    };
 
-      case 'birthday':
-        console.log(textContent)
-        break;
-
-      case 'finish':
-        console.log('Not implemented yet');
-        break;
-
-      case 'first':
-        console.log(textContent)
-        break;
-
-      case 'last':
-        console.log(textContent)
-        break;
-
-      case 'middle':
-        console.log(textContent)
-        break;
-
-      case 'next':
-        console.log('Not implemented yet');
-        break;
-
-      case 'notes':
-        console.log(textContent)
-        break;
-
-      case 'state':
-        console.log(textContent)
-        break;
-
-      case 'street':
-        console.log(textContent)
-        break;
-
-      case 'zip':
-        console.log(textContent)
-        break;
+    const formField = fieldMap[textField];
+    if (formField) {
+      this.fillForm.updateField(formField, textContent);
+      this.diagnostic.nativeElement.textContent = `Set ${textField} to: ${textContent}`;
+    } else {
+      this.diagnostic.nativeElement.textContent = `Cannot record into: ${textField}`;
     }
   }
 
