@@ -14,15 +14,42 @@ export class AdvancedDropdown {
   searchTerm = '';
   dropdownOpen = false;
 
+  filters = {
+    firstName: '',
+    middleName: '',
+    lastName: '',
+    birthday: '',
+    city: '',
+    state: ''
+  };
+
   toggleDropdown() {
     this.dropdownOpen = !this.dropdownOpen;
-    if (this.dropdownOpen && !this.searchTerm) {
-      this.filteredUsers = this.users.slice().sort((a, b) => a.lastName.localeCompare(b.lastName));
-    }
 
-    if (!this.dropdownOpen) {
+    if (this.dropdownOpen) {
+      this.applyFilters();
+    } else {
       this.filteredUsers = [];
     }
+  }
+
+  openPanel() {
+    this.dropdownOpen = true;
+    this.applyFilters();
+  }
+
+  applyFilters() {
+    const term = this.searchTerm.toLowerCase();
+    this.filteredUsers = this.users.filter(user =>
+      (!term || `${user.firstName} ${user.middleName} ${user.lastName} ${user.city} ${user.state}`
+      .toLowerCase().includes(term)) &&
+      (!this.filters.firstName || user.firstName.toLowerCase().includes(this.filters.firstName.toLowerCase())) &&
+      (!this.filters.middleName || user.middleName.toLowerCase().includes(this.filters.middleName.toLowerCase())) &&
+      (!this.filters.lastName || user.lastName.toLowerCase().includes(this.filters.lastName.toLowerCase())) &&
+      (!this.filters.birthday || user.birthday.toLowerCase().includes(this.filters.birthday.toLowerCase())) &&
+      (!this.filters.city || user.city.toLowerCase().includes(this.filters.city.toLowerCase())) &&
+      (!this.filters.state || user.state.toLowerCase().includes(this.filters.state.toLowerCase()))
+    ).sort((a, b) => a.lastName.localeCompare(b.lastName));
   }
 
   onSearch(term: string) {
@@ -37,7 +64,6 @@ export class AdvancedDropdown {
   }
 
   selectUser(user: any) {
-    console.log('Selected user:', user);
     this.searchTerm = `${user.firstName} ${user.lastName}`;
     this.filteredUsers = [user]
   }

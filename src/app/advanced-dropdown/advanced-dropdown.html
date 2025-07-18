@@ -2,11 +2,11 @@
     <div class="dropdown">
         <div class="input-wrapper">
             <input
-            type="text"
-            [(ngModel)]="searchTerm"
-            (input)="onSearch(searchTerm)"
-            placeholder="Search users..."
-            class="search-box"
+                type="text"
+                [(ngModel)]="searchTerm"
+                (input)="onSearch(searchTerm)"
+                placeholder="Search users..."
+                class="search-box"
             />
 
             <button class="toggle-button" (click)="toggleDropdown()" type="button">
@@ -29,6 +29,29 @@
             }
         }
     </div>
+    @if (dropdownOpen) {
+    <div class="side-panel">
+        <h4>Filter Fields</h4>
+        <label>First Name:
+            <input [(ngModel)]="filters.firstName" (input)="applyFilters()" />
+        </label>
+        <label>Middle Name:
+            <input [(ngModel)]="filters.middleName" (input)="applyFilters()" />
+        </label>
+        <label>Last Name:
+            <input [(ngModel)]="filters.lastName" (input)="applyFilters()" />
+        </label>
+        <label>Birthday:
+            <input [(ngModel)]="filters.birthday" (input)="applyFilters()" />
+        </label>
+        <label>City:
+            <input [(ngModel)]="filters.city" (input)="applyFilters()" />
+        </label>
+        <label>State:
+            <input [(ngModel)]="filters.state" (input)="applyFilters()" />
+        </label>
+    </div>
+    }
 </div>
 
 <p>-------------------------------</p>

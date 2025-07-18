@@ -1,3 +1,10 @@
+.dropdown-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
+}
+
 .dropdown {
   position: relative;
   width: 300px;
@@ -61,9 +68,27 @@
   color: #999;
 }
 
-.dropdown-wrapper {
+.side-panel {
+  background: white;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  min-width: 250px;
+  max-width: 300px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 10vh; /* Full viewport height */
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.side-panel label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+.side-panel input {
+  padding: 6px;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
