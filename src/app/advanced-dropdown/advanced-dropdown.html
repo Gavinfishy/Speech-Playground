@@ -1,0 +1,47 @@
+<div class="dropdown-wrapper">
+    <div class="dropdown">
+        <div class="input-wrapper">
+            <input
+            type="text"
+            [(ngModel)]="searchTerm"
+            (input)="onSearch(searchTerm)"
+            placeholder="Search users..."
+            class="search-box"
+            />
+
+            <button class="toggle-button" (click)="toggleDropdown()" type="button">
+                <span class="triangle" [class.rotated]="dropdownOpen" aria-hidden="true">
+                    ▼
+                </span>
+            </button>
+        </div>
+        @if (searchTerm || dropdownOpen && filteredUsers.length > 0) {
+            <ul class="dropdown-list">
+                @for (user of filteredUsers; track user) {
+                    <li (click)="selectUser(user)">
+                        {{ user.firstName }} {{ user.middleName }} {{ user.lastName }} — {{ user.city }}, {{ user.state }}
+                    </li>
+                }   
+            </ul>
+        } @else {
+            @if (searchTerm) {
+                <p class="no-results">No users found.</p>
+            }
+        }
+    </div>
+</div>
+
+<p>-------------------------------</p>
+<p>-------------------------------</p>
+<p>-------------------------------</p>
+<p>-------------------------------</p>
+<p>-------------------------------</p>
+<p>-------------------------------</p>
+<p>-------------------------------</p>
+<p>-------------------------------</p>
+<p>-------------------------------</p>
+<p>-------------------------------</p>
+<p>-------------------------------</p>
+<p>-------------------------------</p>
+<p>-------------------------------</p>
+<p>-------------------------------</p>

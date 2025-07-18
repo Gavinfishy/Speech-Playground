@@ -2,10 +2,11 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FillForm } from '../services/fill-form';
+import { AdvancedDropdown } from "../advanced-dropdown/advanced-dropdown";
 
 @Component({
   selector: 'app-transcribe',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, AdvancedDropdown],
   templateUrl: './transcribe.html',
   styleUrl: './transcribe.css'
 })

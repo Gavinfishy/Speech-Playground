@@ -49,4 +49,56 @@ export const DUMMY_USERS = [
         address: '5601 West Crocus Drive',
         zip: '85306'
     },
+    {
+        birthday: '06-06-2006',
+        firstName: 'Ava',
+        lastName: 'Isabella',
+        middleName: 'Grace',
+        state: 'TX',
+        city: 'San Antonio',
+        address: '432 Sunset Ridge',
+        zip: '78233'
+    },
+    {
+        birthday: '07-07-2007',
+        firstName: 'Sebastian',
+        lastName: 'Daniel',
+        middleName: 'Alexander',
+        state: 'FL',
+        city: 'Sarasota',
+        address: '1029 Bay Shore Road',
+        zip: '34234'
+    },
+    {
+        birthday: '08-08-2008',
+        firstName: 'Emma',
+        lastName: 'Avery',
+        middleName: 'Harper',
+        state: 'OH',
+        city: 'Dayton',
+        address: '88 Hickory Lane',
+        zip: '45424'
+    },
+    {
+        birthday: '09-09-2009',
+        firstName: 'Ethan',
+        lastName: 'Jackson',
+        middleName: 'David',
+        state: 'CO',
+        city: 'Aurora',
+        address: '725 Holly Street',
+        zip: '80010'
+    },
+    {
+        birthday: '10-10-2010',
+        firstName: 'Isla',
+        lastName: 'Scarlett',
+        middleName: 'Luna',
+        state: 'NC',
+        city: 'Raleigh',
+        address: '58 Meadowview Drive',
+        zip: '27604'
+    }
+
+
 ]
