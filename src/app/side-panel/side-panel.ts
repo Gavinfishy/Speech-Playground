@@ -7,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './side-panel.css'
 })
 export class SidePanel {
+  expanded = true;
 
+  togglePanel() {
+    this.expanded = !this.expanded;
+  }
 }

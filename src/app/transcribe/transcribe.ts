@@ -25,6 +25,7 @@ export class PageTwo {
       middleName: [''],
       lastName: [''],
       street: [''],
+      city: [''],
       state: [''],
       zip: [''],
       birthday: ['']

@@ -4,7 +4,7 @@
   font-family: Arial, sans-serif;
 }
 
-.other-buttons-container {
+.navigate-buttons-container {
   text-align: center;
   padding: 2rem;
   font-family: Arial, sans-serif;
@@ -23,7 +23,6 @@
   background-color: #6200ea;
   color: white;
   border-radius: 8px;
-  cursor: pointer;
   margin-bottom: 1.5rem;
   margin-right: 1.5rem;
 }
@@ -38,10 +37,9 @@
 .hints span {
   padding: 6px 10px;
   border-radius: 4px;
-  color: #000;
+  color: rgb(37, 37, 43);
   border: 1px solid #ccc;
   font-size: 0.9rem;
-  cursor: default;
   user-select: none;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }

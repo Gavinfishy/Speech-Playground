@@ -19,7 +19,7 @@ export const KEYWORDS = {
     ],
 
     TEXTBOXES: [
-        'birthday', 'finish', 'first', 'last', 'middle', 'notes', 
+        'birthday', 'city', 'finish', 'first', 'last', 'middle', 'notes', 
         'state', 'street', 'zip'
     ],
 }

@@ -11,7 +11,6 @@
   background-color: #6200ea;
   color: white;
   border-radius: 8px;
-  cursor: pointer;
   margin-bottom: 1.5rem;
   margin-right: 1.5rem;
 }
@@ -77,8 +76,7 @@ button[type="submit"] {
   border: none;
   background-color: #007bff;
   color: white;
-  border-radius: 8px; 
-  cursor: pointer;
+  border-radius: 8px;
   transition: background-color 0.3s ease;
 }
 

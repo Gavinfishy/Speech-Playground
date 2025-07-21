@@ -133,6 +133,7 @@ export class VoiceColor implements AfterViewInit{
   recordTextBox(textField: string, textContent: string) {
     const fieldMap: Record<string, string> = {
       birthday: 'birthday',
+      city: 'city',
       first: 'firstName',
       last: 'lastName',
       middle: 'middleName',

@@ -1,1 +1,9 @@
-<p>side-panel works!</p>
+<button class="toggle-button" (click)="togglePanel()">
+    {{ expanded ? '<' : '>'}}
+</button>
+
+<div class="side-panel" [class.expanded]="expanded">
+    @if (expanded) {
+        <p>side-panel works!</p>
+    }
+</div>
