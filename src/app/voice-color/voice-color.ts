@@ -1,25 +1,26 @@
 import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { SpeechRecognitionService } from '../services/speech-recognition.service';
 import { KEYWORDS } from '../keyword-list';
-import { HelpPopup } from '../help-popup/help-popup';
 import { Router } from '@angular/router';
 import { FillForm } from '../services/fill-form';
+import { SidePanel } from '../side-panel/side-panel';
+import { SidePanelService } from '../services/side-panel';
 
 @Component({
   selector: 'app-voice-color',
-  imports: [HelpPopup],
+  imports: [],
   templateUrl: './voice-color.html',
   styleUrl: './voice-color.css'
 })
 export class VoiceColor implements AfterViewInit{
   @ViewChild('diagnostic') diagnostic!: ElementRef<HTMLDivElement>;
+  @ViewChild('sidePanel') sidePanel!: SidePanel;
 
   colors: string[] = KEYWORDS.COLORS;
   commands: string[] = KEYWORDS.COMMANDS;
   pages: string[] = KEYWORDS.PAGES;
   textBoxes: string[] = KEYWORDS.TEXTBOXES;
   isListening: boolean = false;
-  showingHelp: boolean = false;
 
   private continuousRecognitionAbort?: () => void;
 
@@ -27,15 +28,16 @@ export class VoiceColor implements AfterViewInit{
     private speechService: SpeechRecognitionService,
     private router: Router,
     private fillForm: FillForm,
+    private sidePanelService: SidePanelService,
   ) {}
 
-  navigatePages(pageName: string): void {
-    if (pageName === 'transcribe') {
-      this.router.navigate(['/transcribe'])
-    } else if (pageName === 'home') {
-      this.router.navigate(['/'])
-    }
-  }
+  // navigatePages(pageName: string): void {
+  //   if (pageName === 'transcribe') {
+  //     this.router.navigate(['/transcribe'])
+  //   } else if (pageName === 'home') {
+  //     this.router.navigate(['/'])
+  //   }
+  // }
 
   ngAfterViewInit(): void {}
 
@@ -79,10 +81,9 @@ export class VoiceColor implements AfterViewInit{
     }
     
     switch (command) {
+      //TODO
       case 'close':
-        if (this.showingHelp) {
-          this.toggleHelpPopup();
-        }
+        this.sidePanelService.triggerToggleHelp();
         break;
 
       case 'color': 
@@ -94,14 +95,15 @@ export class VoiceColor implements AfterViewInit{
         }
         break;
       
+      // TODO
       case 'help':
-        this.toggleHelpPopup();
+        this.sidePanelService.triggerToggleHelp();
         break;
 
       case 'navigate':
         const foundPage = this.pages.find(page => transcript.includes(page));
         if (foundPage) {
-          this.navigatePages(foundPage);
+          this.sidePanelService.triggerNavigateTo(foundPage);
         } else {
           this.diagnostic.nativeElement.textContent = 'Page not recognized: ' + transcript;
         }
@@ -149,15 +151,6 @@ export class VoiceColor implements AfterViewInit{
       this.diagnostic.nativeElement.textContent = `Set ${textField} to: ${textContent}`;
     } else {
       this.diagnostic.nativeElement.textContent = `Cannot record into: ${textField}`;
-    }
-  }
-
-  toggleHelpPopup(): void {
-    if (this.showingHelp) {
-      this.showingHelp = false;
-    }
-    else {
-      this.showingHelp = true;
     }
   }
 }

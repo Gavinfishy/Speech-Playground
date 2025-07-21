@@ -1,11 +1,4 @@
 <div class="voice-color-container">
-    <button class="start-button" (click)="navigatePages('transcribe')">Go to the transcribe page</button>
-
-    <!-- Button to open health menu-->
-    <button class="start-button" (click)="toggleHelpPopup()">
-        Help?
-    </button>
-
     <!-- Diagnostic output for recognized speech -->
     <div #diagnostic class="diagnostic">Waiting for voice input...</div>
 
@@ -24,7 +17,3 @@
     </div>
 
 </div>
-
-@if (showingHelp) {
-    <app-help-popup (close)="toggleHelpPopup()"></app-help-popup>
-}

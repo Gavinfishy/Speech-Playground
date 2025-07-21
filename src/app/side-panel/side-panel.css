@@ -1,24 +1,36 @@
 .side-panel {
-  position: fixed;
-  top: 0;
-  height: 100vh;
-  width: 0;
-  background-color: #f1f1f1;
-  transition: width 0.3s ease;
-  padding: 10px;
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    width: 0;
+    background-color: #f1f1f1;
+    transition: width 0.3s ease;
+    padding: 10px;
 }
 
 .side-panel.expanded {
-  width: 200px;
+    width: 200px; 
 }
 
 .toggle-button {
-  position: fixed;
-  left: 0;
-  top: 20px;
-  z-index: 1001;
-  padding: 4px 6px;
-  background-color: #007bff;
-  color: white;
-  border: none;
+    position: absolute;
+    right: 0px;
+    top: 10px;
+    z-index: 1;
+    padding: 4px 6px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+.navigate-buttons {
+    padding: 0.5rem 1rem;
+    font-size: 1.1rem;
+    border: none;
+    background-color: #6200ea;
+    color: white;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    margin-right: 1.5rem;
 }

@@ -1,9 +1,20 @@
-<button class="toggle-button" (click)="togglePanel()">
-    {{ expanded ? '<' : '>'}}
-</button>
-
 <div class="side-panel" [class.expanded]="expanded">
+    <button class="toggle-button" (click)="togglePanel()">
+        {{ expanded ? '<' : '>'}}
+    </button>
     @if (expanded) {
-        <p>side-panel works!</p>
+        <button class="navigate-buttons" (click)="toggleHelpPopup()">
+            Help?
+        </button>
+        <button class="navigate-buttons" (click)="navigatePages('home')">
+            Home
+        </button>
+        <button class="navigate-buttons" (click)="navigatePages('transcribe')">
+            Transcribe
+        </button>
     }
 </div>
+
+@if (showingHelp) {
+    <app-help-popup (close)="toggleHelpPopup()"></app-help-popup>
+}
