@@ -81,7 +81,6 @@ export class VoiceColor implements AfterViewInit{
     }
     
     switch (command) {
-      //TODO
       case 'close':
         this.sidePanelService.triggerToggleHelp();
         break;
@@ -95,7 +94,6 @@ export class VoiceColor implements AfterViewInit{
         }
         break;
       
-      // TODO
       case 'help':
         this.sidePanelService.triggerToggleHelp();
         break;

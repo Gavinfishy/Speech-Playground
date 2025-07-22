@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SidePanelService {
-  private _toggleHelp$ = new BehaviorSubject<void>(undefined);
-  private _navigateToPage$ = new BehaviorSubject<string | null>(null);
+  private _toggleHelp$ = new Subject<void>();
+  private _navigateToPage$ = new Subject<string>();
 
   toggleHelp$ = this._toggleHelp$.asObservable();
   navigateToPage$ = this._navigateToPage$.asObservable();

@@ -1,5 +1,5 @@
-<div class="popup-backdrop">
-  <div class="popup">
+<div class="popup-backdrop" (click)="onClose()">
+  <div class="popup" (click)="$event.stopPropagation()">
     <h2>Help</h2>
     <p>Please allow microphone permissions to use this page</p>
     <p>
