@@ -5,7 +5,11 @@
     width: 0;
     background-color: #f1f1f1;
     transition: width 0.3s ease;
-    padding: 10px;
+    padding-left: 20px;
+    padding-top: 50px;
+    align-items: center;
+    flex-direction: column;
+    display: flex;
 }
 
 .side-panel.expanded {
