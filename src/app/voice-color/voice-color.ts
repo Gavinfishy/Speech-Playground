@@ -1,10 +1,9 @@
 import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { SpeechRecognitionService } from '../services/speech-recognition.service';
-import { KEYWORDS } from '../keyword-list';
-import { Router } from '@angular/router';
+import { KEYWORDS } from '../local-data-pool';
 import { FillForm } from '../services/fill-form';
-import { SidePanel } from '../side-panel/side-panel';
 import { SidePanelService } from '../services/side-panel';
+import { parseSpokenDate } from '../services/spoken-time/spoken-date';
 
 @Component({
   selector: 'app-voice-color',
@@ -12,9 +11,9 @@ import { SidePanelService } from '../services/side-panel';
   templateUrl: './voice-color.html',
   styleUrl: './voice-color.css'
 })
+
 export class VoiceColor implements AfterViewInit{
   @ViewChild('diagnostic') diagnostic!: ElementRef<HTMLDivElement>;
-  @ViewChild('sidePanel') sidePanel!: SidePanel;
 
   colors: string[] = KEYWORDS.COLORS;
   commands: string[] = KEYWORDS.COMMANDS;
@@ -26,18 +25,9 @@ export class VoiceColor implements AfterViewInit{
 
   constructor(
     private speechService: SpeechRecognitionService,
-    private router: Router,
     private fillForm: FillForm,
     private sidePanelService: SidePanelService,
   ) {}
-
-  // navigatePages(pageName: string): void {
-  //   if (pageName === 'transcribe') {
-  //     this.router.navigate(['/transcribe'])
-  //   } else if (pageName === 'home') {
-  //     this.router.navigate(['/'])
-  //   }
-  // }
 
   ngAfterViewInit(): void {}
 
@@ -145,6 +135,9 @@ export class VoiceColor implements AfterViewInit{
 
     const formField = fieldMap[textField];
     if (formField) {
+      if (formField == "birthday") {
+        textContent = String(parseSpokenDate(textContent))
+      }
       this.fillForm.updateField(formField, textContent);
       this.diagnostic.nativeElement.textContent = `Set ${textField} to: ${textContent}`;
     } else {

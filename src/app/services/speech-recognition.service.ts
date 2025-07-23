@@ -1,5 +1,5 @@
 import { Injectable, NgZone } from '@angular/core';
-import { KEYWORDS } from '../keyword-list';
+import { KEYWORDS } from '../local-data-pool';
 
 interface SpeechGrammar {
   src: string;

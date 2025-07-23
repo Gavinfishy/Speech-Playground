@@ -30,7 +30,16 @@
             </div>
             <div class="form-row">
                 <label>State:
-                    <input type="text" formControlName="state" />
+                    <input type="text" formControlName="state" autocomplete="off" />
+                    @if (userForm.get('state')?.value && filteredStates.length > 0) {
+                        <ul class="state-suggestions">
+                            @for (state of filteredStates; track state.abbreviation) {
+                                <li (click)="selectState(state.abbreviation)">
+                                    {{ state.name }} ({{state.abbreviation}})
+                                </li>
+                            }
+                        </ul>
+                    }
                 </label>
                 <label>ZIP:
                     <input type="text" formControlName="zip" />

@@ -39,6 +39,7 @@ label {
   display: flex;
   flex-direction: column;
   flex: 1;
+  position: relative;
 }
 
 input[type="text"],
@@ -93,4 +94,26 @@ button[type="submit"]:hover {
   font-size: 1rem;
 }
 
+.state-suggestions {
+  top: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #ccc;
+  max-height: 150px;
+  overflow-y: auto;
+  background: white;
+  position: absolute;
+  z-index: 999;
+  width: 100%;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
 
+.state-suggestions li {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.state-suggestions li:hover {
+  background-color: #f0f0f0;
+}

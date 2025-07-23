@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FillForm } from '../services/fill-form';
 import { AdvancedDropdown } from "../advanced-dropdown/advanced-dropdown";
+import { US_STATES } from '../local-data-pool';
 
 @Component({
   selector: 'app-transcribe',
@@ -12,6 +13,8 @@ import { AdvancedDropdown } from "../advanced-dropdown/advanced-dropdown";
 })
 export class PageTwo {
   userForm: FormGroup;
+  states = US_STATES;
+  filteredStates = US_STATES
 
   @ViewChild('notesBox') notesBox!: ElementRef<HTMLTextAreaElement>;
 
@@ -47,6 +50,37 @@ export class PageTwo {
         }
       }
     });
+  }
+
+  ngOnInit() {
+    this.userForm.get('state')?.valueChanges.subscribe((input: string) => {
+      const term = input?.trim().toLowerCase();
+      if (!term) {
+        this.filteredStates = this.states;
+        return;
+      }
+
+      this.filteredStates = this.states.filter(s => s.name.toLowerCase().includes(term) 
+        ||s.abbreviation.toLowerCase().includes(term)
+      );
+
+      const exactMatch = this.states.find(
+        s =>
+          s.name.toLowerCase() === term ||
+          s.abbreviation.toLowerCase() === term
+      );
+      
+      if (exactMatch) {
+        this.userForm.get('state')?.setValue(exactMatch.abbreviation, {
+          emitEvent: false
+        });
+      }
+    });
+  }
+
+  selectState(stateAbbr: string) {
+    this.userForm.get('state')?.setValue(stateAbbr);
+    this.filteredStates = [];
   }
 
   navigatePages(pageName: string): void {
