@@ -11,7 +11,7 @@ import { US_STATES } from '../local-data-pool';
   templateUrl: './transcribe.html',
   styleUrl: './transcribe.css'
 })
-export class PageTwo {
+export class Transcribe {
   userForm: FormGroup;
   states = US_STATES;
   filteredStates = US_STATES
