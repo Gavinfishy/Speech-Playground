@@ -18,6 +18,7 @@ export class VoiceColor implements AfterViewInit{
   colors: string[] = KEYWORDS.COLORS;
   commands: string[] = KEYWORDS.COMMANDS;
   pages: string[] = KEYWORDS.PAGES;
+  searchFields: string[] = KEYWORDS.SEARCH_FIELDS;
   textBoxes: string[] = KEYWORDS.TEXTBOXES;
   isListening: boolean = false;
 
@@ -102,13 +103,23 @@ export class VoiceColor implements AfterViewInit{
         if (foundTextBox) {
           const textContent = transcript.replace(foundTextBox, '').trim();
           this.recordTextBox(foundTextBox, textContent);
-        } else {
-
         }
         break;
       
       case 'reset':
         this.resetColor();
+        break;
+
+      case 'search':
+        let searchField = this.searchFields.find(field => transcript.includes(field));
+        let searchValue = '';
+        if (searchField) { // Search with a filter
+          searchValue = transcript.replace('search', '').replace(searchField, '').trim();
+          this.populateSearchBox(searchField, searchValue);
+        } else { // Search without a filter
+          searchValue = transcript.replace('search', '').trim();
+          this.populateSearchBox('general', searchValue);
+        }
         break;
 
       case 'stop':
@@ -117,6 +128,29 @@ export class VoiceColor implements AfterViewInit{
 
       default:
         this.diagnostic.nativeElement.textContent = 'Command not recognized: ' + transcript;
+    }
+  }
+
+  populateSearchBox(fieldKeyword: string, searchValue: string) {
+    const fieldMap: Record<string, string> = {
+      birthday: 'filter.birthday',
+      city: 'filter.city',
+      first: 'filter.firstName',
+      last: 'filter.lastName',
+      middle: 'filter.middleName',
+      state: 'filter.state',
+      general: 'filter.searchTerm'
+    };
+
+    const dropdownField = fieldMap[fieldKeyword];
+    if (dropdownField) {
+      if (dropdownField === 'filter.birthday') {
+        searchValue = String(parseSpokenDate(searchValue, 'mdy'));
+      }
+      this.fillForm.updateField(dropdownField, searchValue);
+      this.diagnostic.nativeElement.textContent = `Searching ${fieldKeyword}: ${searchValue}`
+    } else {
+      this.diagnostic.nativeElement.textContent = `Unknown search field: ${fieldKeyword}`;
     }
   }
 
@@ -136,7 +170,7 @@ export class VoiceColor implements AfterViewInit{
     const formField = fieldMap[textField];
     if (formField) {
       if (formField == "birthday") {
-        textContent = String(parseSpokenDate(textContent))
+        textContent = String(parseSpokenDate(textContent, 'ymd'))
       }
       this.fillForm.updateField(formField, textContent);
       this.diagnostic.nativeElement.textContent = `Set ${textField} to: ${textContent}`;

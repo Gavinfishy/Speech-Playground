@@ -1,5 +1,3 @@
-// Honestly this file probably isn't needed and also not sure if it works...
-// Figured out if you say months in the format month name, day, year, chrome figures out date formatting correctly
 export function parseSpokenYear(spoken: string): string | null {
     const numberWords: Record<string, number> = {
         zero: 0, one: 1, two: 2, three: 3, four: 4,

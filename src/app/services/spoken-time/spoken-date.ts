@@ -1,7 +1,7 @@
 import { MONTHS, ORDINAL_DAYS } from "../../local-data-pool";
 import { parseSpokenYear } from "./spoken-years";
 
-export function parseSpokenDate(input: string): string | null {
+export function parseSpokenDate(input: string, returnFormat: string): string | null {
     const normalized = input.toLowerCase().replace(/-/g, ' ').replace(/\s+and\s+/g, ' ');
     const words = normalized.split(/\s+/);
 
@@ -44,7 +44,15 @@ export function parseSpokenDate(input: string): string | null {
     }
 
     if (month && day && year) {
-        return `${year}-${month}-${day}`;
+        if (returnFormat == 'ymd') {
+            return `${year}-${month}-${day}`;
+        }
+        else if (returnFormat == 'mdy') {
+            return `${month}-${day}-${year}`;
+        }
+        else {
+            return `${day}-${month}-${year}`;
+        }
     } else {
         return null;
     }

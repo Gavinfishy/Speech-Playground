@@ -1,107 +1,75 @@
 export const KEYWORDS = {
     COLORS: [
-        'aqua', 'aquamarine', 'azure', 'beige', 'bisque', 'black',
-        'blue', 'brown', 'chocolate', 'coral', 'crimson', 'cyan', 
-        'fuchsia', 'ghostwhite', 'gold', 'goldenrod', 'gray', 'green', 
-        'indigo', 'ivory', 'khaki', 'lavender', 'lime', 'linen', 
-        'magenta', 'maroon', 'moccasin', 'navy', 'olive', 'orange', 
-        'orchid','peru', 'pink', 'plum', 'purple', 'red', 'salmon', 
-        'sienna', 'silver', 'snow', 'tan', 'teal', 'thistle', 'tomato', 
-        'turquoise', 'violet', 'wheat', 'white', 'yellow'
+        'aqua', /*'aquamarine',*/ 'azure', 'beige', 'bisque', 'black', 'blue', 'brown', 'chocolate', 'coral', 'crimson', 'cyan', 
+        'fuchsia', /*'ghostwhite',*/ 'gold', 'goldenrod', 'gray', 'green', 'indigo', 'ivory', 'khaki', 'lavender', 'lime', 'linen', 
+        'magenta', 'maroon', 'moccasin', 'navy', 'olive', 'orange', 'orchid','peru', 'pink', 'plum', 'purple', 'red', 'salmon', 
+        'sienna', 'silver', 'snow', 'tan', 'teal', 'thistle', 'tomato', 'turquoise', 'violet', 'wheat', 'white', 'yellow'
     ],
 
     COMMANDS: [
-        'close', 'color', 'help', 'navigate', 'record', 'reset', 'stop'
+        'close', 'color', 'help', 'navigate', 'record', 'reset', 'search', 'stop'
     ],
 
     PAGES: [
         'home', 'transcribe'
     ],
 
+    SEARCH_FIELDS: [
+        'birthday', 'city', 'first', 'last', 'middle', 'state'
+    ],
+
     TEXTBOXES: [
-        'birthday', 'city', 'finish', 'first', 'last', 'middle', 'notes', 
-        'state', 'street', 'zip'
+        'birthday', 'city', 'first', 'last', 'middle', 'notes', 'state', 'street', 'zip'
     ],
 };
 
 export const MONTHS: Record<string, string> = {
-    january: "01",
-    february: "02",
-    march: "03",
-    april: "04",
-    may: "05",
-    june: "06",
-    july: "07",
-    august: "08",
-    september: "09",
-    october: "10",
-    november: "11",
-    december: "12"
+    january: "01", one: "01", "1": "01",
+    february: "02", two: "02", "2": "02",
+    march: "03", three: "03", "3": "03",
+    april: "04", four: "04", "4": "04",
+    may: "05", five: "05", "5": "05",
+    june: "06", six: "06", "6": "06",
+    july: "07", seven: "07", "7": "07",
+    august: "08", eight: "08", "8": "08",
+    september: "09", nine: "09", "9": "09",
+    october: "10", ten: "10", "10": "10",
+    november: "11", eleven: "11", "11": "11",
+    december: "12", twelve: "12", "12": "12"
 };
 
 export const ORDINAL_DAYS: Record<string, string> = {
-    first: "01",
-    '1st': "01",
-    second: "02",
-    "2nd": "02",
-    third: "03",
-    "3rd": "03",
-    fourth: "04",
-    '4th': "04",
-    fifth: "05",
-    "5th": "05",
-    sixth: "06",
-    "6th": "06",
-    seventh: "07",
-    "7th": "07",
-    eighth: "08",
-    "8th": "08",
-    ninth: "09",
-    "9th": "09",
-    tenth: "10",
-    "10th": "10",
-    eleventh: "11",
-    "11th": "11",
-    twelfth: "12",
-    "12th": "12",
-    thirteenth: "13",
-    "13th": "13",
-    fourteenth: "14",
-    "14th": "14",
-    fifteenth: "15",
-    "15th": "15",
-    sixteenth: "16",
-    "16th": "16",
-    seventeenth: "17",
-    "17th": "17",
-    eighteenth: "18",
-    "18th": "18",
-    nineteenth: "19",
-    "19th": "19",
-    twentieth: "20",
-    "20th": "20",
-    "twenty first": "21",
-    "21st": "21",
-    "twenty second": "22",
-    "22nd": "22",
-    "twenty third": "23",
-    "23rd": "23",
-    "twenty fourth": "24",
-    "24th": "24",
-    "twenty fifth": "25",
-    "25th": "25",
-    "twenty sixth": "26",
-    "26th": "26",
-    "twenty seventh": "27",
-    "27th": "27",
-    "twenty eighth": "28",
-    "28th": "28",
-    "twenty ninth": "29",
-    "29th": "29",
-    thirtieth: "30",
-    "30th": "30",
-    "thirty first": "31",
-    "31st": "31"
+    first: "01", "1st": "01", one: "01", "1": "01",
+    second: "02", "2nd": "02", two: "02", "2": "02",
+    third: "03", "3rd": "03", three: "03", "3": "03",
+    fourth: "04", "4th": "04", four: "04", "4": "04",
+    fifth: "05", "5th": "05", five: "05", "5": "05",
+    sixth: "06", "6th": "06", six: "06", "6": "06",
+    seventh: "07", "7th": "07", seven: "07", "7": "07",
+    eighth: "08", "8th": "08", eight: "08", "8": "08",
+    ninth: "09", "9th": "09", nine: "09", "9": "09",
+    tenth: "10", "10th": "10", ten: "10", "10": "10",
+    eleventh: "11", "11th": "11", eleven: "11", "11": "11",
+    twelfth: "12", "12th": "12", twelve: "12", "12": "12",
+    thirteenth: "13", "13th": "13", thirteen: "13", "13": "13",
+    fourteenth: "14", "14th": "14", fourteen: "14", "14": "14",
+    fifteenth: "15", "15th": "15", fifteen: "15", "15": "15",
+    sixteenth: "16", "16th": "16", sixteen: "16", "16": "16",
+    seventeenth: "17", "17th": "17", seventeen: "17", "17": "17",
+    eighteenth: "18", "18th": "18", eighteen: "18", "18": "18",
+    nineteenth: "19", "19th": "19", nineteen: "19", "19": "19",
+    twentieth: "20", "20th": "20", twenty: "20", "20": "20",
+    "twenty first": "21", "21st": "21", "twenty one": "21", "21": "21",
+    "twenty second": "22", "22nd": "22", "twenty two": "22", "22": "22",
+    "twenty third": "23", "23rd": "23", "twenty three": "23", "23": "23",
+    "twenty fourth": "24", "24th": "24", "twenty four": "24", "24": "24",
+    "twenty fifth": "25", "25th": "25", "twenty five": "25", "25": "25",
+    "twenty sixth": "26", "26th": "26", "twenty six": "26", "26": "26",
+    "twenty seventh": "27", "27th": "27", "twenty seven": "27", "27": "27",
+    "twenty eighth": "28", "28th": "28", "twenty eight": "28", "28": "28",
+    "twenty ninth": "29", "29th": "29", "twenty nine": "29", "29": "29",
+    thirtieth: "30", "30th": "30", thirty: "30", "30": "30",
+    "thirty first": "31", "31st": "31", "thirty one": "31", "31": "31"
 };
 
 
