@@ -35,6 +35,7 @@ export class AdvancedDropdown {
       if (field === 'filter.searchTerm') {
         this.searchTerm = value;
         this.onSearch(value);
+        this.dropdownOpen = true;
       } else if (field.startsWith('filter.')) {
         const filterKey = field.replace('filter.', '') as keyof typeof this.filters;
         if (filterKey === 'state') {
@@ -47,8 +48,8 @@ export class AdvancedDropdown {
           this.filters[filterKey] = value;
         }
         this.applyFilters();
+        this.dropdownOpen = true;
       }
-      this.dropdownOpen = true;
     });
   }
 
